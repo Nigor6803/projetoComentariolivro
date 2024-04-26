@@ -1,11 +1,13 @@
 package entidade;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Postagens {
-	
+
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	private Date momento;
 	private String tituloDoLivro;
 	private String tipoDolivro;
@@ -66,4 +68,24 @@ public class Postagens {
 	public void removeComentario(Comentario comentario) {
 		comentarios.remove(comentario);
 	}
+	
+	@Override
+	public String toString() {
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(tituloDoLivro+"\n");
+		sb.append("ANO DE LANÇAMENTO:");
+		sb.append(sdf.format(momento) + "\n");
+		sb.append("CLASSIFICAÇÃO LITERARIA:");
+		sb.append(tipoDolivro + "\n");
+		sb.append("QUANTIDADE EM ESTOQUE: ");
+		sb.append(quantidadeEmEstoque);
+		sb.append("COMENTARIO \n");
+		for (Comentario c : comentarios) {
+			sb.append(c.setAutorDoComentario() + "\n");
+			sb.append(c.setTexto()+ "\n");
+		}
+		return sb.toString();
+	}
+	
 }
